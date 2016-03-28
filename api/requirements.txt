@@ -1,3 +1,6 @@
+BeautifulSoup==3.2.1
+beautifulsoup4==4.4.1
+bs4==0.0.1
 Flask==0.10.1
 itsdangerous==0.24
 Jinja2==2.8
