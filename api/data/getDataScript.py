@@ -1,15 +1,15 @@
 from bs4 import BeautifulSoup
-from apiKey import cnnRSSUrl
+import apiKey
 import requests
 import pickle
 import re
 
-# TODO: need to load results into database
-
-# create list of all countries
 countryList = pickle.load(open('countries.py', 'rb'))
 countryList = [x.lower() for x in countryList]
 
+rssFeeds1 = apiKey.rssFeeds1
+rssFeeds2 = apiKey.rssFeeds2
+urls = rssFeeds1 + rssFeeds2
 
 # takes in string title and article description, returns list of all countries mentioned
 def findCountry(title, description):
@@ -21,37 +21,42 @@ def findCountry(title, description):
     return set(combinedList)
 
 
-# CNN
-def getDataFromCNN():
+def getData(url):
     data = []
-    text = requests.get(cnnRSSUrl).text
+    text = requests.get(url).text
     soup = BeautifulSoup(text, 'html.parser')
 
     container = soup.find_all('item')
     # attributes: <title>, <pubdate>, <description>
     for result in container:
         article = {}
-        title = str(result.find('title').text)
+        title = result.find('title').text
+        description = result.find('description').text
+        if url in rssFeeds1:
+            title = str(title)
+            description = str(description)
+        else:
+            title = str(title.encode('utf8'))
+            description = str(description.encode('utf8'))
+        description = re.sub('<[^>]*>', '', description)  # gets rid of internal tags
         article['title'] = title
-        description = str(result.find('description').text)
-        description = re.sub('<[^>]*>', '', description) # gets rid of internal tags
         article['description'] = description
         article['date'] = str(result.find('pubdate').text)
         article['countries'] = list(findCountry(title, description))
         data.append(article)
-    # print(data)
+    return data
 
 
-if __name__ == '__main__':
-    getDataFromCNN()
-
-
-
-
-
-
-
-
+def getAllData():
+    result = {}
+    for url in urls:
+        print('started ' + url)
+        result[url] = getData(url)
+        print("finished " + url )
+    # create script to use nyTimesHeadlines Object here
 
 
 
+if __name__ == "__main__":
+    # run code here
+    getAllData()
