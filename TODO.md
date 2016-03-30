@@ -4,7 +4,8 @@ App
   Client (Angular/ D3)
     - load data from custom api
     - load data onto custom data visualization
-    - set up gulp/webpack build
+    - set up gulp build
+      - include browerSync, babel for ES6, webpack
     - create Angular structure for project
     - write tests for loading data
 
