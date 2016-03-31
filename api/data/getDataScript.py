@@ -17,17 +17,7 @@ except:
 # loads data from nytimes api and various rss feeds
 # formats data to be loaded into database
 # adds data to database
-
-'''
-TODO:
-- FOR FINDING COUNTRIES, NEED TO FORMAT A WAY FOR ADJECTIVES TO BE FOUND
-- NYTIMES:
-    - find country, DONE
-    - add format time function, DONE
-- RSS FEEDS:
-    - add format time function, DONE
-- CREATE A FORMAT THAT CAN BE TURNED INTO SQL STATEMENT: needs to be a list of objects
-'''
+# THIS SCRIPT SHOULD BE RUN ONCE A DAY
 
 currentDate = time.strftime('%Y-%m-%d')
 
@@ -54,7 +44,7 @@ def findCountry(title, description):
 def checkWordCountry(word):
     if (word.lower() in countryList):
         return word.lower()
-    elif (word.lower() == "american"):
+    elif (word.lower() == "american" or word.lower() == "us" or word.lower() == "u.s."):
         return "united states"
     else:
         # use a string match threshold
@@ -77,7 +67,7 @@ def wordSimilarity(word):
         # if more than 60% of the characters match, return the country
         for value in filteredCountries:
             if value.startswith(word[:threshold].lower()):
-                return value
+                return value.lower()
         return False
 
 
@@ -100,7 +90,7 @@ def getNyTimesData():
     nyTimes = nyTimesHeadlines.nyTimesHeadlines()
     headlines = nyTimes.getData()
     for item in headlines:
-         item['country'] = list(findCountry(item['title'], item['description']))
+         item['countries'] = list(findCountry(item['title'], item['description']))
     return headlines
 
 # gets data from all RSS feed URLs
@@ -122,8 +112,8 @@ def getRSSData(url):
             title = str(title.encode('utf8'))
             description = str(description.encode('utf8'))
         description = re.sub('<[^>]*>', '', description)  # gets rid of internal tags
-        article['title'] = title
-        article['description'] = description
+        article['title'] = title.replace("'", "")
+        article['description'] = description.replace("'", "")
         article['published_date'] = str(result.find('pubdate').text)
         article['published_date'] = formatRSSDate(article['published_date'])
         article['countries'] = list(findCountry(title, description))
@@ -138,18 +128,49 @@ def getAllData():
         print('started ' + url)
         result[apiKey.sourcesMapping[url]] = getRSSData(url)
         print("finished " + url)
-        print(result[apiKey.sourcesMapping[url]][0])
     return result
 
 # connects to database
-def createDatabaseConnection():
+def createDatabaseConnection(nyData, rssData):
+    # connect to database and execute statements
+    print("starting to load into database")
     cnx = mysql.connector.connect(user=db.user, password=db.password, host=db.host, database=db.database)
+    cursor = cnx.cursor(buffered=True)
+    for value in nyData:
+        sqlStatement = "INSERT INTO " + db.TABLE_NAME + " VALUES" + createSQLStatement(value) + ";"
+        cursor.execute(sqlStatement)
+    sources = rssData.keys()
+    for source in sources:
+        articles = rssData[source] # list
+        for article in articles:
+            sqlStatement = "INSERT INTO " + db.TABLE_NAME + " VALUES " + createSQLStatement(article) + ";"
+            cursor.execute(sqlStatement)
+    cnx.commit()
+    cnx.close()
+    print('finished loading database')
 
 
+# takes in an article object and creates a valid SQL insert statement
+def createSQLStatement(article):
+    statement = "("
+    countries = ""
+    numberCountries = len(article['countries'])
+    for i in range(numberCountries):
+        if (i != numberCountries - 1):
+            countries = countries + article["countries"][i] + "|"
+        countries = countries + article["countries"][numberCountries - 1]
+    description = ""
+    if type(article['description']) == type([]):
+        for word in article['description']:
+            description = description + word + " "
+    statement = statement + "'" + currentDate + "', " + "'" + article['title'] + "', '" + countries + "', '"  \
+                + article['published_date'] + "', '" + description + "', '" + article['source'] + "')"
+    return statement
 
 if __name__ == "__main__":
     nyTimesData = getNyTimesData()
     rssData = getAllData()
+    createDatabaseConnection(nyTimesData, rssData)
 
 
 

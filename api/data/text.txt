@@ -1,0 +1,15 @@
+{
+    'source': 'New York Times',
+    'country': ['u.s. virgin islands', u'china', 'dominica'],
+    'published_date': u'2016-03-31',
+    'description': [],
+    'title': u'Patrolling Disputed Waters, U.S. and China Jockey for Dominance'
+}
+
+{
+    'source': 'ABC News',
+    'countries': ['united states', 'chile'],
+    'published_date': '2016-03-30',
+    'description': "The woman's husband and their four children remain hospitalized. ",
+    'title': "American Killed in Brussels Identified as Air Force Officer's Wife"
+}

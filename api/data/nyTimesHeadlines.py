@@ -27,7 +27,7 @@ class nyTimesHeadlines():
 
             information = {
                 'title' : value['title'],
-                'country' : [],
+                'countries' : [],
                 'published_date' : value['published_date'],
                 'description' : keywords,
                 'source' : "New York Times"
