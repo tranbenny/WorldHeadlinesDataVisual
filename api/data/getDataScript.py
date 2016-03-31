@@ -6,6 +6,7 @@ import requests
 import pickle
 import re
 import time
+import databaseConfig as db
 
 try:
     import mysql.connector
@@ -142,8 +143,8 @@ def getAllData():
 
 # connects to database
 def createDatabaseConnection():
-    cnx = mysql.connector.connect(user='headlines', password='123', host='127.0.0.1', database='WORLD_HEADLINES')
-    print(cnx)
+    cnx = mysql.connector.connect(user=db.user, password=db.password, host=db.host, database=db.database)
+
 
 
 if __name__ == "__main__":

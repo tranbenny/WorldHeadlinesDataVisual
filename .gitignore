@@ -3,3 +3,5 @@ api/data/apiKey.py
 api/data/apiKey.pyc
 app/node_modules
 api/data/countries.csv
+api/data/databaseSchema.txt
+api/data/databaseConfig.py
