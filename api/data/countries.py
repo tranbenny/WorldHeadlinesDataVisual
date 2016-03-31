@@ -71,7 +71,7 @@ aS'Chad'
 p35
 aS'Chile'
 p36
-aS"People's Republic of China"
+aS'China'
 p37
 aS'Colombia'
 p38
@@ -83,7 +83,7 @@ aS'Congo - Brazzaville'
 p41
 aS'Costa Rica'
 p42
-aS"Cote d'Ivoire (The Ivory Coast)"
+aS"Cote d'Ivoire"
 p43
 aS'Croatia'
 p44

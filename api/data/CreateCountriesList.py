@@ -8,7 +8,13 @@ countries = []
 with open('countries.csv', 'rb') as csvData:
     for row in csvData:
         tokens = row.split(',')
-        countries.append(tokens[0])
+        if tokens[0] == "People's Republic of China":
+            countries.append("China")
+        elif (tokens[0] == "Cote d'Ivoire (The Ivory Coast)"):
+            countries.append("Cote d'Ivoire")
+        else:
+            countries.append(tokens[0])
+
 
 csvData.close()
 result = open('countries.py', 'wb')
