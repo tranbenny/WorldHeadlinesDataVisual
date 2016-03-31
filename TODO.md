@@ -22,6 +22,7 @@ API (Flask, MySQL, Python)
   - Figure out database schema, DONE
   - populate database with information, DONE
   - set up api routes with Flask to query information
+      create read statements for api's
       create status codes for responses
   - deploy a staging project online for testing api
   - write tests for reading from database
