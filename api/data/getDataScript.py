@@ -18,15 +18,14 @@ except:
 # formats data to be loaded into database
 # adds data to database
 # THIS SCRIPT SHOULD BE RUN ONCE A DAY
+# TODO: need to format out bytes out of strings 
 
 currentDate = time.strftime('%Y-%m-%d')
 
 countryList = pickle.load(open('countries.py', 'rb'))
 countryList = [x.lower() for x in countryList]
 
-rssFeeds1 = apiKey.rssFeeds1
-rssFeeds2 = apiKey.rssFeeds2
-urls = rssFeeds1 + rssFeeds2
+urls = apiKey.rssFeeds
 
 # takes in string title and article description, returns list of all countries mentioned
 def findCountry(title, description):
@@ -98,19 +97,19 @@ def getRSSData(url):
     data = []
     text = requests.get(url).text
     soup = BeautifulSoup(text, 'html.parser')
-
     container = soup.find_all('item')
     # attributes: <title>, <pubdate>, <description>
     for result in container:
         article = {}
         title = result.find('title').text
         description = result.find('description').text
-        if url in rssFeeds1:
+
+        try:
             title = str(title)
             description = str(description)
-        else:
-            title = str(title.encode('utf8'))
-            description = str(description.encode('utf8'))
+        except:
+            title = getRidOfTags(str(title.encode('utf8')))
+            description = getRidOfTags(str(description.encode('utf8')))
         description = re.sub('<[^>]*>', '', description)  # gets rid of internal tags
         article['title'] = title.replace("'", "")
         article['description'] = description.replace("'", "")
@@ -166,6 +165,12 @@ def createSQLStatement(article):
     statement = statement + "'" + currentDate + "', " + "'" + article['title'] + "', '" + countries + "', '"  \
                 + article['published_date'] + "', '" + description + "', '" + article['source'] + "')"
     return statement
+
+
+def getRidOfTags(input):
+    newInput = re.sub('<(br|a|img|p|span|time)([^>]*)>', '', input)
+    newInput = re.sub('(</a>|</p>|<ul>|</ul>|<li>|</li>|</span>|</time>|<em>|</em>|<strong>|</strong>)', '', newInput)
+    return newInput
 
 if __name__ == "__main__":
     nyTimesData = getNyTimesData()
