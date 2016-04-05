@@ -18,7 +18,7 @@ except:
 # formats data to be loaded into database
 # adds data to database
 # THIS SCRIPT SHOULD BE RUN ONCE A DAY
-# TODO: need to format out bytes out of strings 
+
 
 currentDate = time.strftime('%Y-%m-%d')
 
@@ -157,7 +157,8 @@ def createSQLStatement(article):
     for i in range(numberCountries):
         if (i != numberCountries - 1):
             countries = countries + article["countries"][i] + "|"
-        countries = countries + article["countries"][numberCountries - 1]
+        else:
+            countries = countries + article["countries"][numberCountries - 1]
     description = ""
     if type(article['description']) == type([]):
         for word in article['description']:

@@ -1,6 +1,6 @@
 # figure out a regular expression to get rid of html tags
 # figure out a regular expression to get rid of string encoded bytes
-
+'''
 import re
 import pickle
 
@@ -36,3 +36,10 @@ for result in results:
         print("FAILED TEST")
         print(result)
 
+'''
+
+listA = [1, 2, 3, 'hello', 'hello2']
+listB = [1, 4, 5, 'hello']
+combined = listA + listB
+print(set(combined))
+print(list(set(combined)))

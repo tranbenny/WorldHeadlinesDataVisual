@@ -1,13 +1,23 @@
+'''
+api routes:
+/today
+/:<date>
+
+'''
+
 # main api file to serve api routes
+
 
 # additional system paths for other folders
 import sys
 sys.path.insert(0, './data')
 
 # imported modules
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Response
 from flask.ext.cors import CORS
-from nyTimesHeadlines import nyTimesHeadlines
+from getHeadlines import readFromDatabase
+
+
 
 app = Flask(__name__)
 CORS(app)
@@ -18,10 +28,28 @@ CORS(app)
 def hello():
     return 'hello world!'
 
-@app.route('/headlines', methods=['GET'])
+# api route for getting today's date headlines
+@app.route('/today', methods=['GET'])
 def getHeadlines():
-    response = nyTimesHeadlines().getData()
-    return jsonify({'results' : response})
+    results = {}
+    results['data'] = readFromDatabase()
+    if len(results['data']) != 0:
+        response = jsonify(results)
+        response.status_code = 200
+        return response
+    else:
+        return notFound()
+
+# api route for handling unhandled routes
+@app.errorhandler(404)
+def notFound():
+    message = {
+        'status': 404,
+        'message' : 'Route not found'
+    }
+    response = jsonify(message)
+    response.status_code = 404
+    return response
 
 
 
