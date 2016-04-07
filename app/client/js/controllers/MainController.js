@@ -1,12 +1,13 @@
-"use strict";
 
-var MainController = function($scope, $http) {
-  $scope.name = "hello world";
-  $scope.result = "hi benny";
-  getData();
+class MainController {
+  
+  constructor($http) {
+    this.name = "replace me with today's date";
+    this.result = "replace me with a router nav-bar";
+  }
 
   // get data from flask api
-  function getData() {
+  getData() {
     $http({
       method: 'GET',
       url: 'http://localhost:5000/headlines'
@@ -18,7 +19,8 @@ var MainController = function($scope, $http) {
       console.log(error);
     });
   }
+
 }
 
-module.exports = MainController;
+export default MainController;
 

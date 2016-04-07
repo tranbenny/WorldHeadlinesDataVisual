@@ -7,6 +7,7 @@ var gutil = require('gulp-util');
 var concat = require('gulp-concat'); // combines files into one
 var uglify = require('gulp-uglify'); // minimizes file
 var babelify = require('babelify'); // babel transpiler 
+var es6 = require('babel-preset-es2015'); // es6 babel preset
 var browserify = require('browserify'); // module builder
 var watchify = require('watchify'); // watches for changes
 var source = require('vinyl-source-stream'); // converts browserify stream to gulp stream
@@ -17,19 +18,25 @@ var config = {
 	'index' : './client/index.html',
 	'views' : './client/views/*.html',
 	'main' : './client/js/app.js',
+	'dist' : './client/src/*.json',
 	'cssModules' : [
 		'./node_modules/bootstrap/dist/css/bootstrap.min.css',
-		'./node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+		'./node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
+		'./node_modules/ammap3/ammap/ammap.css'
 	], 
 	'jsModules' : [
 		'./node_modules/jquery/jquery.min.js',
 		'./node_modules/bootstrap/bootstrap.min.js',
+		'./node_modules/ammap3/ammap/amma.js',
+		'./node_modules/ammap3/ammap/maps/js/worldLow.js'
 	]
 };
 
 function bundle(bundler) {
 	return bundler
-		.transform(babelify)
+		.transform(babelify, {
+			presets: [es6]
+		})
 		.bundle()
 		.on('error', function(e) {
 			gutil.log(e.message);
@@ -85,8 +92,12 @@ gulp.task('views', function() {
 gulp.task('copy-index', function() {
 	return gulp.src(config.index)
 		.pipe(gulp.dest('dist'));
-})
+});
 
+gulp.task('copy-dist', function() {
+	return gulp.src(config.dist)
+		.pipe(gulp.dest('dist/src'));
+});
 
 gulp.task('watch', ['lint'], function() {
 	var watcher = watchify(browserify(config.main), watchify.args);
@@ -97,6 +108,7 @@ gulp.task('watch', ['lint'], function() {
 	watcher.on('log', gutil.log);
 
 	gulp.watch([config.index, config.views], ['views', 'copy-index']).on('change', reload);
+	gulp.watch(config.js).on('change', reload);
 	gulp.watch(config.css, ['css']).on('change', reload);
 
 	browserSync.init({

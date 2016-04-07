@@ -8,10 +8,12 @@
 
 </head>
 <body>
-  <div class="container" ng-controller="MainCtrl">
-    <h1>{{ name }}</h1>
-    <p class="lead">{{ result }}</p>
+  <div class="container-fluid" ng-controller="MainCtrl as mc">
+    <h1>{{ mc.name }}</h1>
+    <p class="lead">{{ mc.result }}</p>
+    <bar-chart></bar-chart>
   </div>
+
 
   <script src="js/bundle.js"></script>
 
