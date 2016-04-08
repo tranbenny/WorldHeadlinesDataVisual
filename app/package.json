@@ -29,6 +29,7 @@
   "dependencies": {
     "angular": "^1.5.3",
     "bootstrap": "^3.3.6",
+    "country-data": "0.0.24",
     "d3": "^3.5.16",
     "datamaps": "^0.4.4",
     "jquery": "^2.2.2"

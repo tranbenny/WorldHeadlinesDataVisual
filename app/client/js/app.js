@@ -16,6 +16,8 @@ import MainController from './controllers/MainController.js';
 import BarChartDirective from './directives/BarChartDirective.js';
 import d3Service from './services/d3Service.js';
 import dataMapService from './services/dataMapService.js';
+import headlineService from './services/HeadlineService.js';
+import countryService from './services/countryService.js';
 
 
 
@@ -28,11 +30,13 @@ angular.module('app')
 
 // services
 angular.module('app')
+	.factory('countryService', countryService)
+	.factory('headlineServices', ['$http', headlineService])
 	.factory('dataMap', dataMapService)
 	.factory('d3', d3Service);
 
 
 // directives
 angular.module('app')
-	.directive('barChart', ['d3', 'dataMap',  BarChartDirective]);
+	.directive('barChart', ['d3', 'dataMap', 'headlineServices', 'countryService', BarChartDirective]);
 
