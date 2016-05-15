@@ -41,11 +41,10 @@ var _countryService = require('./services/countryService.js');
 
 var _countryService2 = _interopRequireDefault(_countryService);
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // angular components
+
 
 var app = _angular2.default.module('app', []);
 
@@ -59,38 +58,27 @@ _angular2.default.module('app').factory('countryService', _countryService2.defau
 _angular2.default.module('app').directive('barChart', ['d3', 'dataMap', 'headlineServices', 'countryService', _BarChartDirective2.default]);
 
 },{"./controllers/MainController.js":2,"./directives/BarChartDirective.js":3,"./services/HeadlineService.js":4,"./services/countryService.js":5,"./services/d3Service.js":6,"./services/dataMapService.js":7,"angular":9,"jquery":23}],2:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-  };
-}();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var MainController = function () {
   function MainController() {
     _classCallCheck(this, MainController);
 
-    this.name = this.getDate();
+    // this.name = this.getDate();
+    this.name = "April 5th, 2016";
     this.result = "Sources: New York Times, Washington Post, The Guardian, Reuters, Fox News, UPI World News, CNN, ABC News";
   }
 
   _createClass(MainController, [{
-    key: 'getDate',
+    key: "getDate",
     value: function getDate() {
       var today = new Date();
       var dd = today.getDate();
@@ -118,17 +106,7 @@ exports.default = MainController;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-// directives need:
-// - restrict
-// - scope?
-// - template
-// - link function(scope object, element(jquery object), attrs(array of attributes on the element))
-// 		use the link function to perform DOM manipulation
-
 // TODO:
-// - create a GeoJSON for coordinates, DONE
-// - change the color of countries with headlines
-// - create a blue scale map for the headlines data
 // - when a country is clicked, load up a pop up of the headlines
 
 function BarChartDirective(d3, worldMap, headlines, countryData) {
@@ -186,13 +164,6 @@ function BarChartDirective(d3, worldMap, headlines, countryData) {
 	return {
 		restrict: 'E',
 		link: function link(scope, element, attrs) {
-			console.log("trying something new");
-			/*
-     	const paletteScale = d3.scale.linear()
-             .domain([minValue,maxValue])
-             .range(["#EFEFFF","#02386F"]);
-     	*/
-
 			var map = new worldMap({
 				element: document.getElementById('chart'),
 				fills: {
@@ -269,9 +240,7 @@ var _countryData = require("country-data");
 
 var _countryData2 = _interopRequireDefault(_countryData);
 
-function _interopRequireDefault(obj) {
-	return obj && obj.__esModule ? obj : { default: obj };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 },{"country-data":15}],6:[function(require,module,exports){
 'use strict';
@@ -288,9 +257,7 @@ var _d = require('d3');
 
 var _d2 = _interopRequireDefault(_d);
 
-function _interopRequireDefault(obj) {
-	return obj && obj.__esModule ? obj : { default: obj };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 },{"d3":20}],7:[function(require,module,exports){
 'use strict';
@@ -307,9 +274,7 @@ var _datamaps = require('datamaps');
 
 var _datamaps2 = _interopRequireDefault(_datamaps);
 
-function _interopRequireDefault(obj) {
-	return obj && obj.__esModule ? obj : { default: obj };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 },{"datamaps":21}],8:[function(require,module,exports){
 /**

@@ -16,6 +16,7 @@ except:
 def readFromDatabase():
     todayDate = time.strftime('%Y-%m-%d')
     print(todayDate)
+    # todayDate = '2016-04-05'
     connection = mysql.connector.connect(user=db.user, password=db.password, host=db.host, database=db.database)
     cursor = connection.cursor(buffered=True)
     query = "SELECT * FROM " + db.TABLE_NAME + " WHERE HEADLINE_DATE = '" + todayDate + "';"

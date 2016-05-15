@@ -26,7 +26,7 @@ class nyTimesHeadlines():
                 keywords = []
 
             information = {
-                'title' : value['title'],
+                'title' : value['title'].replace("'",""),
                 'countries' : [],
                 'published_date' : value['published_date'],
                 'description' : keywords,

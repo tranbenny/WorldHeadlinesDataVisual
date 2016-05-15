@@ -1,14 +1,4 @@
-// directives need:
-// - restrict
-// - scope? 
-// - template
-// - link function(scope object, element(jquery object), attrs(array of attributes on the element))
-// 		use the link function to perform DOM manipulation
-
 // TODO: 
-// - create a GeoJSON for coordinates, DONE
-// - change the color of countries with headlines
-// - create a blue scale map for the headlines data
 // - when a country is clicked, load up a pop up of the headlines
 
 

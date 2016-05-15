@@ -102,19 +102,27 @@ def getRSSData(url):
     for result in container:
         article = {}
         title = result.find('title').text
-        description = result.find('description').text
+        try:
+            description = result.find('description').text
+        except:
+            description = ''
 
         try:
-            title = str(title)
-            description = str(description)
+            title = getRidOfTags(str(title)).replace("'", "")
+            description = getRidOfTags(str(description))
         except:
             title = getRidOfTags(str(title.encode('utf8')))
+            # print(title)
             description = getRidOfTags(str(description.encode('utf8')))
+            # print(description)
         description = re.sub('<[^>]*>', '', description)  # gets rid of internal tags
         article['title'] = title.replace("'", "")
         article['description'] = description.replace("'", "")
-        article['published_date'] = str(result.find('pubdate').text)
-        article['published_date'] = formatRSSDate(article['published_date'])
+        try:
+            article['published_date'] = str(result.find('pubdate').text)
+            article['published_date'] = formatRSSDate(article['published_date'])
+        except:
+            article['published_date'] = currentDate
         article['countries'] = list(findCountry(title, description))
         article['source'] = apiKey.sourcesMapping[url]
         data.append(article)
@@ -137,13 +145,21 @@ def createDatabaseConnection(nyData, rssData):
     cursor = cnx.cursor(buffered=True)
     for value in nyData:
         sqlStatement = "INSERT INTO " + db.TABLE_NAME + " VALUES" + createSQLStatement(value) + ";"
-        cursor.execute(sqlStatement)
+        try:
+            cursor.execute("FAILED INSERT: " + sqlStatement)
+        except:
+            print(sqlStatement)
+            continue
     sources = rssData.keys()
     for source in sources:
         articles = rssData[source] # list
         for article in articles:
             sqlStatement = "INSERT INTO " + db.TABLE_NAME + " VALUES " + createSQLStatement(article) + ";"
-            cursor.execute(sqlStatement)
+            try:
+                cursor.execute(sqlStatement)
+            except:
+                print("FAILED INSERT: " + sqlStatement)
+                continue
     cnx.commit()
     cnx.close()
     print('finished loading database')

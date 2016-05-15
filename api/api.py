@@ -10,6 +10,9 @@ api routes:
 
 # additional system paths for other folders
 import sys
+
+from flask_cors import cross_origin
+
 sys.path.insert(0, './data')
 
 # imported modules
@@ -21,6 +24,7 @@ from getHeadlines import readFromDatabase
 
 app = Flask(__name__)
 CORS(app)
+cross_origin(app)
 
 
 # main application routes
@@ -30,6 +34,7 @@ def hello():
 
 # api route for getting today's date headlines
 @app.route('/today', methods=['GET'])
+@cross_origin()
 def getHeadlines():
     results = {}
     results['data'] = readFromDatabase()
@@ -41,6 +46,7 @@ def getHeadlines():
         return notFound()
 
 # api route for handling unhandled routes
+
 @app.errorhandler(404)
 def notFound():
     message = {

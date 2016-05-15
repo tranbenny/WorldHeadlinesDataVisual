@@ -1,8 +1,9 @@
 
 class MainController {
-  
+
   constructor() {
-    this.name = this.getDate();
+    // this.name = this.getDate();
+    this.name = "April 5th, 2016";
     this.result = "Sources: New York Times, Washington Post, The Guardian, Reuters, Fox News, UPI World News, CNN, ABC News";
   }
 
@@ -23,4 +24,3 @@ class MainController {
 }
 
 export default MainController;
-
