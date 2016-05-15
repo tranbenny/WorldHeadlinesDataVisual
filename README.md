@@ -7,7 +7,7 @@ Tools Needed: mysql, python, gulp, mysql-connector, virtual env
 3. create virtual enviornment inside api folder with the command
 	"virtualenv env"
 4. install dependencies using "pip install -r requirements.txt"
-5. install mysql-connector-python
+5. install mysql-connector-python <br />
 	git clone https://github.com/mysql/mysql-connector-python.git <br />
 	cd mysql-connector-python <br />
 	python ./setup.py build <br />
