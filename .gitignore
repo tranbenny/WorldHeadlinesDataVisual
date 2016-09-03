@@ -1,5 +1,6 @@
 api/env
-api/data/apiKey.py
-api/data/apiKey.pyc
+api/HeadlineData/ApiKey.py
+api/HeadlineData/ApiKey.pyc
+api/.idea
 app/node_modules
 

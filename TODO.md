@@ -1,6 +1,9 @@
 World Map Data Visualization of Global News Reporting
 
 App
+  - decide if I want to rewrite it into react 
+    Why? 
+      small application
   Client (Angular/ D3)
     - load data from custom api
     - load data onto custom data visualization
@@ -11,18 +14,8 @@ App
   Server:
     - wire up node backend to serve main page
 
+Backend: 
 
-API (Flask, MySQL, Python)
-  - create file to gather required information, DONE
-      get NYTimes api call, DONE
-      scrape news sites, get more news site's RSS feeds, DONE
-        write a function that finds the country from an article title, DONE
-      write a function to format times into date object, DONE
-
-  - Figure out database schema, DONE
-  - populate database with information, DONE
-  - set up api routes with Flask to query information
-      create read statements for api's
-      create status codes for responses
-  - deploy a staging project online for testing api
-  - write tests for reading from database
+- set up local dev enviornment with instructions using Docker, Python, MongoDB
+- figure out format of document storage in mongo db 
+- create Python service with Docker to populate document store
