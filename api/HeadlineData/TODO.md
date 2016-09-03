@@ -1,0 +1,3 @@
+- organize api keys into a file 
+- organize urls into a file
+- move scraping into a Service object 
