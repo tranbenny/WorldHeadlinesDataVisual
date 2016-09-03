@@ -1,8 +1,0 @@
-Headlines Table:
-
-- Headline Date (Date)
-- Title (TEXT)
-- Countries (TEXT)
-- Published Date (Date)
-- Description/Keywords (TEXT)
-- Source (TEXT)
