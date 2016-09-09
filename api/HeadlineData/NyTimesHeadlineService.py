@@ -32,6 +32,7 @@ class NyTimesHeadlineService:
             information = {
                 'title' : value['title'].replace("'",""),
                 'countries' : [],
+                'headline_date' : self.date,
                 'published_date' : value['published_date'],
                 'description' : keywords,
                 'source' : "New York Times"
