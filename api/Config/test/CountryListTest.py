@@ -2,10 +2,12 @@ import os
 import unittest
 from pymongo import MongoClient
 
+from Config.DataSources import LOCAL_DB_URL
+
 class CountryListTest(unittest.TestCase):
 
     def setUp(self):
-        self.client = MongoClient('mongodb://localhost:8000')
+        self.client = MongoClient(LOCAL_DB_URL)
         # self.countries = []
 
 

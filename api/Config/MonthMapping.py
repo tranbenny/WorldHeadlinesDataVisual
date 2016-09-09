@@ -1,4 +1,4 @@
-months = {
+MONTHS = {
     "Jan": "01",
     "Feb" : "02",
     "Mar" : "03",

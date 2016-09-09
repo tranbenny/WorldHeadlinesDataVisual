@@ -1,9 +1,10 @@
 # reads in countries.csv file and creates list of all countries in data set
 
 from pymongo import MongoClient
+from Config.DataSources import LOCAL_DB_URL
 
 # add countries to collection in db
-client = MongoClient('mongodb://localhost:8000')
+client = MongoClient(LOCAL_DB_URL)
 db = client.country
 
 countries = []

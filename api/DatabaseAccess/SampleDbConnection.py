@@ -8,7 +8,7 @@ except:
     print('error connecting to mongodb')
 
 # accessing a database
-db = client.test
+db = client.sample
 
 # accessing a database's collection
 collection = db.dataset
