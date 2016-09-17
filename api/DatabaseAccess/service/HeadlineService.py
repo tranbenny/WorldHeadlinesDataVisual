@@ -2,7 +2,7 @@
 Headline Service to interact with data
 '''
 
-from DatabaseAccess.HeadlineDAO import HeadlineDAO
+from DatabaseAccess.dao.HeadlineDAO import HeadlineDAO
 
 class HeadlineService:
 
@@ -16,7 +16,7 @@ class HeadlineService:
         return self.headlineDao.findAll(criteria)
 
     def findByDate(self, date):
-        return self.findByDate(date)
+        return self.headlineDao.findByDate(date)
 
     def findByCountry(self, country):
         return self.findByCountry(country)

@@ -29,11 +29,14 @@ class HeadlineDAO:
 
     def saveMultiple(self, headlines, collectionName):
         '''
-        :param headlines: dictionary object, key = source, value = list of article objects
+        :param headlines: dictionary/list, key = source, value = list of article objects
         :param collectionName: name of db collection to add to
         '''
-        for source in headlines.keys():
-            self.db[collectionName].insert_many(headlines[source])
+        if isinstance(headlines, dict):
+            for source in headlines.keys():
+                self.db[collectionName].insert_many(headlines[source])
+        else:
+            self.db[collectionName].insert_many(headlines)
 
     def findByDate(self, date):
         '''

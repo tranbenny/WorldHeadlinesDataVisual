@@ -1,6 +1,6 @@
 import unittest
 
-from DatabaseAccess.HeadlineDAO import HeadlineDAO
+from DatabaseAccess.dao.HeadlineDAO import HeadlineDAO
 
 class HeadlineDAOTest(unittest.TestCase):
 
@@ -20,6 +20,9 @@ class HeadlineDAOTest(unittest.TestCase):
         invalidDate = 'ldskfndlfn'
         results = self.dao.findByDate(invalidDate)
         self.assertEquals(results.count(), 0)
+
+    def test_should_not_add_duplicates(self):
+        return None
 
 
 if __name__ == '__main__':

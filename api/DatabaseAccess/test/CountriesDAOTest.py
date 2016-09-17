@@ -1,5 +1,7 @@
 import unittest
-from DatabaseAccess.CountriesDAO import CountriesDAO
+
+from DatabaseAccess.dao.CountriesDAO import CountriesDAO
+
 
 class CountriesDAOTest(unittest.TestCase):
 

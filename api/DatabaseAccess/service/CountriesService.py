@@ -1,4 +1,4 @@
-from DatabaseAccess.CountriesDAO import CountriesDAO
+from DatabaseAccess.dao.CountriesDAO import CountriesDAO
 
 class CountriesService:
 
@@ -11,4 +11,7 @@ class CountriesService:
         :return:
         '''
         return self.countriesDAO.locateCountry(text)
+
+    def addNewFieldToCountry(self, query, field):
+        return self.countriesDAO.addNewFieldToCountry(query, field)
 
