@@ -6,12 +6,25 @@ TODO:
 - create a progress bar that prints in console?
 '''
 
+import time
+
+from DatabaseAccess.service.HeadlineService import HeadlineService
 from HeadlineData.GetHeadlineService import GetHeadlineService
-from DatabaseAccesss.HeadlineService import HeadlineService
+from HeadlineData.NyTimesHeadlineService import NyTimesHeadlineService
 
 if __name__ == '__main__':
+    headlineDate = time.strftime('%Y-%m-%d')
     headlineService = GetHeadlineService()
-    results = headlineService.getData()
     service = HeadlineService()
-    service.saveMultiple(results, 'headlines')
+    nyTimesService = NyTimesHeadlineService()
+
+    results = headlineService.getData()
+    nyResults = nyTimesService.getHeadlines()
+
+    service.saveMultiple(nyResults, headlineDate)
+    service.saveMultiple(results, headlineDate)
+
+    # TODO: update country list after fetching headlines
+
+
     print('DONE')

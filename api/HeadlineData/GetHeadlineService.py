@@ -1,14 +1,16 @@
 '''
 
 '''
-import time
-import requests
 import re
+import time
+
+import requests
 from bs4 import BeautifulSoup
 
 from Config.MonthMapping import MONTHS
+from DatabaseAccess.service.CountriesService import CountriesService
 from HeadlineData.HeadlineSourcesURLs import HEADLINE_URLS
-from DatabaseAccesss.CountriesService import CountriesService
+
 
 class GetHeadlineService:
 
@@ -62,9 +64,7 @@ class GetHeadlineService:
             except:
                 article['published_date'] = self.date
 
-            countriesInTitle = self.countryService.locateCountry(article['title'])
-            countriesInDescription = self.countryService.locateCountry(article['description'])
-            article['countries'] = list(set(countriesInTitle + countriesInDescription))
+            article['countries'] = []
             article['source'] = source
             article['headline_date'] = self.date
             data.append(article)
