@@ -30,10 +30,11 @@ class CountriesDAO:
         :return: list of countries mentioned in input text
         '''
         countries = []
-        tokens = nltk.tokenize.word_tokenize(text)
-        for token in tokens:
-            relatedCountries = self._checkCountryEquality_(token)
-            countries.extend(relatedCountries)
+        if not isinstance(text, list):
+            tokens = nltk.tokenize.word_tokenize(text)
+            for token in tokens:
+                relatedCountries = self._checkCountryEquality_(token)
+                countries.extend(relatedCountries)
         return countries
 
 
@@ -68,3 +69,6 @@ class CountriesDAO:
         :return:
         '''
         self.db['countries'].update(query, field)
+
+
+

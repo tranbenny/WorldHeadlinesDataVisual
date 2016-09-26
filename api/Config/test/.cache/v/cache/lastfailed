@@ -1,1 +1,3 @@
-{}
+{
+  "CountryListTest.py::CountryListTest::test_database_added_all_countries_from_csv": true
+}

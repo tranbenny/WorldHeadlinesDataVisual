@@ -102,9 +102,29 @@ def add_missing_country_names():
 
 
 
+def limit_only_one_country_name():
+    dao = CountriesDAO()
+    allCountries = dao.__loadAllCountries__()
+    for country in allCountries:
+        if isinstance(country['country_name'], list):
+            # update values
+            name = country['country_name'][0]
+            other_names = country['other_names']
+            for i in range(1, len(country['country_name'])):
+                other_names.append(country['country_name'][i])
+            search_query = {
+                'country_name':name
+            }
+            update_query = {
+                'country_name':name,
+                'other_names': other_names
+            }
+            dao.addNewFieldToCountry(search_query, update_query)
+
 
 
 if __name__ == '__main__':
     # reformat_country_codes()
     # add_alternate_country_names()
-    add_missing_country_names()
+    # add_missing_country_names()
+    limit_only_one_country_name()

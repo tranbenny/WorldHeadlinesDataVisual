@@ -43,9 +43,7 @@ class HeadlineDAO:
         :param date: string date
         :return: cursor instance pointing to list of headline objects from specified date
         '''
-        results = self.db[HEADLINE_COLLECTION_NAME].find({
-            'headline_date' : date
-        })
+        results = self.db[date].find()
         return results
 
     def findByCountry(self, country):
