@@ -2,5 +2,9 @@ api/env
 api/HeadlineData/ApiKey.py
 api/HeadlineData/ApiKey.pyc
 api/.idea
+
+api/**/*.pyc
+
 app/node_modules
+
 
