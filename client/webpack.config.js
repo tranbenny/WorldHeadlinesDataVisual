@@ -9,23 +9,22 @@ var config = {
 	cache: true,
 	debug: true,
 	devtool: 'eval',
-	watch: true, 
+	watch: false, 
 	entry: {
-		// example: 'app' : 'PATH TO APP FILE'
 		app : './src/app.js'
 	},
 	output: {
 		// example:
 		path: path.resolve('dist'),
 		publicPath: '/',
-		filename: '[name].js'
+		filename: '[name].js',
 		chunkFilename: '[name].[chunkhash].js'
 	},
 	plugins: [
 		// PLUGIN FOR CREATING VARIABLES ACCESSABLE IN ALL FILES
 		// new webpack.ProvidePlugin({}),
 		new CommonsPlugin({
-			name: 'common.js',
+			name: 'common',
 			minChunks: Infinity 
 		}),
 		new HtmlWebpackPlugin({
