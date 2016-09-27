@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+
+  <!-- css files -->
+  <link rel="stylesheet" href="./css/vendor.css">
+  <link rel="stylesheet" href="./css/bundle.css">
+
+</head>
+<body>
+  <div class="container-fluid" ng-controller="MainCtrl as mc">
+    <h1>{{ mc.name }}</h1>
+    <p class="lead">{{ mc.result }}</p>
+    <bar-chart></bar-chart>
+  </div>
+
+
+  <script src="js/bundle.js"></script>
+
+</body>
+</html>
