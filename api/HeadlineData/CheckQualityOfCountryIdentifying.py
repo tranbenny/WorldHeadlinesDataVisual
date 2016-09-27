@@ -2,6 +2,7 @@
 console function to show how well the country scraping works
 '''
 
+
 from DatabaseAccess.service.CountriesService import CountriesService
 from DatabaseAccess.service.HeadlineService import HeadlineService
 

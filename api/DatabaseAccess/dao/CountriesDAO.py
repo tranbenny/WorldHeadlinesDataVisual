@@ -32,9 +32,17 @@ class CountriesDAO:
         countries = []
         if not isinstance(text, list):
             tokens = nltk.tokenize.word_tokenize(text)
-            for token in tokens:
-                relatedCountries = self._checkCountryEquality_(token)
-                countries.extend(relatedCountries)
+            for i in range(len(tokens)):
+                token = tokens[i]
+                if token == 'North' or token == 'South':
+                    # check North Korea/South Korea
+                    if (tokens[i + 1] == 'Korea' or tokens[i + 1] == 'Korean') and i < len(tokens) - 1:
+                        name = token[i] + " " + token[i + 1]
+                        relatedCountries = self._checkCountryEquality_(name)
+                        countries.extend(relatedCountries)
+                else:
+                    relatedCountries = self._checkCountryEquality_(token)
+                    countries.extend(relatedCountries)
         return countries
 
 

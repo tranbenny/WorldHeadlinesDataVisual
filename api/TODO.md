@@ -13,7 +13,7 @@ HeadlineData TODO:
 
 HeadlineDataSummaryAPI TODO:
 - create a check that requests have date parameters 
-- add authorization for api routes 
+- add token authorization for api routes 
 
 
 Client TODO:
@@ -30,10 +30,13 @@ Database Cleaning TODO:
 
 - make a special case for "North/South Korea" and other country names with spaces 
     - do a check for all countries that are more than one word 
-    - use n-grams
     - Taiwan didn't match with anything
     - check U.S, U.S.
     - Soviet Union
+    
+    - plural form of nouns  
+        - use token to check for nouns and add a 's' and " 's "
+   
 
 
 
