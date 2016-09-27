@@ -1,0 +1,42 @@
+TITLE: North Korea Tests a Nuclear Device, South Says
+DESCRIPTION: []
+COUNTRIES: []
+TITLE: An Afghan Father-Son Tale Takes a Fatal Turn, but Does Not End
+DESCRIPTION: []
+COUNTRIES: ['Afghanistan']
+TITLE: U.S. Rescue Attempt in Afghanistan Missed Western Hostages by Hours
+DESCRIPTION: []
+COUNTRIES: ['Afghanistan']
+TITLE: 73 Syrian Aid Groups Suspend Cooperation with U.N.
+DESCRIPTION: []
+COUNTRIES: ['Syria']
+TITLE: What Muslims Do on Hajj, and Why
+DESCRIPTION: []
+COUNTRIES: []
+TITLE: My Hajj Reading List: Preparing for Mecca
+DESCRIPTION: []
+COUNTRIES: []
+TITLE: Mystery Surrounds Car With Gas Containers Found in Paris Near Notre Dame
+DESCRIPTION: []
+COUNTRIES: []
+TITLE: British Parliament Set to Relocate to Save a Crumbling Palace
+DESCRIPTION: []
+COUNTRIES: [['United Kingdom', 'Britain']]
+TITLE: Mont Blanc Cable Car Passengers Are Stranded Aloft Overnight in French Alps
+DESCRIPTION: []
+COUNTRIES: ['France']
+TITLE: Isabelle Dinoire, Recipient of First Partial Facial Transplant, Dies at 49
+DESCRIPTION: []
+COUNTRIES: []
+TITLE: Top Palestinian Court Postpones Oct. 8 Municipal Elections
+DESCRIPTION: []
+COUNTRIES: []
+TITLE: Leaving Asia, Obama Predicts U.S. Tilt Toward Region Will Be Lasting
+DESCRIPTION: []
+COUNTRIES: []
+TITLE: In Glasgow, a Most Bitter Rivalry Takes Root Again
+DESCRIPTION: []
+COUNTRIES: []
+TITLE: After Mass Knife Attack in Japan, Disabled Victims Are Still in the Shadows
+DESCRIPTION: []
+COUNTRIES: ['Japan']

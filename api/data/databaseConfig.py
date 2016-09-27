@@ -1,6 +1,0 @@
-user = 'ENTER USER HERE'
-password = 'ENTER PASSWORD HERE'
-host = '127.0.0.1'
-database = 'WORLD_HEADLINES'
-
-TABLE_NAME = 'HEADLINES'
