@@ -37,8 +37,6 @@ def getTodayHeadlines():
 
 
 
-
-
 if __name__ == '__main__':
     app.debug = True # REMEMBER TO TURN OFF FOR PRODUCTION
     app.run()
