@@ -8,7 +8,6 @@ import requests
 from bs4 import BeautifulSoup
 
 from Config.MonthMapping import MONTHS
-from DatabaseAccess.service.CountriesService import CountriesService
 from HeadlineData.HeadlineSourcesURLs import HEADLINE_URLS
 
 
@@ -16,7 +15,7 @@ class GetHeadlineService:
 
     def __init__(self):
         self.date = time.strftime('%Y-%m-%d')
-        self.countryService = CountriesService()
+
 
 
     def __formatRSSDate__(self, date):
