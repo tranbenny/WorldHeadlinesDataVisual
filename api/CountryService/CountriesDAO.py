@@ -1,27 +1,18 @@
 '''
-
-
+database interface for interacting with local mongo db in accessing country data
 '''
 
 from pymongo import MongoClient
 import nltk
-from Config.DataSources import LOCAL_DB_URL
+
 
 class CountriesDAO:
 
-    def __init__(self):
-        self.client = MongoClient(LOCAL_DB_URL)
-        self.db = self.client.country
-        self.countries = self.__loadAllCountries__()
+    LOCAL_DB_URL = 'mongodb://localhost:8000'
 
-    def __loadAllCountries__(self):
-        '''
-        :return: list of countries
-        '''
-        results = []
-        for country in self.db.countries.find():
-            results.append(country)
-        return results
+    def __init__(self):
+        self.client = MongoClient(self.LOCAL_DB_URL)
+        self.db = self.client.country
 
 
     def locateCountry(self, text):
@@ -45,11 +36,10 @@ class CountriesDAO:
                     countries.extend(relatedCountries)
         return countries
 
-
     def _checkCountryEquality_(self, word):
         '''
-        :param word:
-        :return:
+        :param String word
+        :return: list of country names that matched passed word
         '''
         matches = []
         cursor = self.db['countries'].find({
@@ -68,15 +58,10 @@ class CountriesDAO:
 
         return matches
 
-
-
-    def addNewFieldToCountry(self, query, field):
+    def update(self, query, field):
         '''
         :param query:
         :param field:
         :return:
         '''
         self.db['countries'].update(query, field)
-
-
-
