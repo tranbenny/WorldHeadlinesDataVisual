@@ -1,2 +1,6 @@
-console.log('the main js file has loaded');
-console.log('loaded this file');
+import angular from 'angular';
+
+let app = angular.module('app', []);
+
+
+
